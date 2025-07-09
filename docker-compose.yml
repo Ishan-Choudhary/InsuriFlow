@@ -1,0 +1,24 @@
+services:
+  api:
+    build: .
+    ports:
+      -  "3000:3000"
+    volumes:
+      - type: bind
+        source: ./src
+        target: /app/src
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER} 
+      POSTGRES_PASSWORD: ${DB_PASSWORD} 
+      POSTGRES_DB: ${DB_NAME} 
+    volumes:
+      - db_data:/var/lib/postgres/data
+
+volumes:
+  db_data:
