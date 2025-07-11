@@ -7,6 +7,8 @@ services:
       - type: bind
         source: ./src
         target: /app/src
+    env_file:
+      - ./.env
 
   db:
     image: postgres
