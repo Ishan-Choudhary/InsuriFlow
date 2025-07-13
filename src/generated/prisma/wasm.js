@@ -145,6 +145,17 @@ exports.Prisma.PolicyScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.ClaimScalarFieldEnum = {
+  id: 'id',
+  description: 'description',
+  dateOfService: 'dateOfService',
+  cost: 'cost',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -159,9 +170,16 @@ exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN'
 };
 
+exports.ClaimStatus = exports.$Enums.ClaimStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  DENIED: 'DENIED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
-  Policy: 'Policy'
+  Policy: 'Policy',
+  Claim: 'Claim'
 };
 
 /**
