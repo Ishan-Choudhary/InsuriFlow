@@ -153,7 +153,8 @@ exports.Prisma.ClaimScalarFieldEnum = {
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  policyId: 'policyId'
 };
 
 exports.Prisma.SortOrder = {

@@ -1117,6 +1117,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type PolicyCountOutputType
+   */
+
+  export type PolicyCountOutputType = {
+    claims: number
+  }
+
+  export type PolicyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    claims?: boolean | PolicyCountOutputTypeCountClaimsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PolicyCountOutputType without action
+   */
+  export type PolicyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PolicyCountOutputType
+     */
+    select?: PolicyCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PolicyCountOutputType without action
+   */
+  export type PolicyCountOutputTypeCountClaimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClaimWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -2554,6 +2585,8 @@ export namespace Prisma {
     updatedAt?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    claims?: boolean | Policy$claimsArgs<ExtArgs>
+    _count?: boolean | PolicyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["policy"]>
 
   export type PolicySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2603,6 +2636,8 @@ export namespace Prisma {
   export type PolicyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "policyNumber" | "coverageDetails" | "annualDeductible" | "deductibleRemaining" | "outOfPocketMax" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["policy"]>
   export type PolicyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    claims?: boolean | Policy$claimsArgs<ExtArgs>
+    _count?: boolean | PolicyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PolicyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -2615,6 +2650,7 @@ export namespace Prisma {
     name: "Policy"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      claims: Prisma.$ClaimPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3023,6 +3059,7 @@ export namespace Prisma {
   export interface Prisma__PolicyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    claims<T extends Policy$claimsArgs<ExtArgs> = {}>(args?: Subset<T, Policy$claimsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClaimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3459,6 +3496,30 @@ export namespace Prisma {
   }
 
   /**
+   * Policy.claims
+   */
+  export type Policy$claimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Claim
+     */
+    select?: ClaimSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Claim
+     */
+    omit?: ClaimOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClaimInclude<ExtArgs> | null
+    where?: ClaimWhereInput
+    orderBy?: ClaimOrderByWithRelationInput | ClaimOrderByWithRelationInput[]
+    cursor?: ClaimWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ClaimScalarFieldEnum | ClaimScalarFieldEnum[]
+  }
+
+  /**
    * Policy without action
    */
   export type PolicyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3493,12 +3554,14 @@ export namespace Prisma {
     id: number | null
     cost: Decimal | null
     userId: number | null
+    policyId: number | null
   }
 
   export type ClaimSumAggregateOutputType = {
     id: number | null
     cost: Decimal | null
     userId: number | null
+    policyId: number | null
   }
 
   export type ClaimMinAggregateOutputType = {
@@ -3510,6 +3573,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
+    policyId: number | null
   }
 
   export type ClaimMaxAggregateOutputType = {
@@ -3521,6 +3585,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
+    policyId: number | null
   }
 
   export type ClaimCountAggregateOutputType = {
@@ -3532,6 +3597,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     userId: number
+    policyId: number
     _all: number
   }
 
@@ -3540,12 +3606,14 @@ export namespace Prisma {
     id?: true
     cost?: true
     userId?: true
+    policyId?: true
   }
 
   export type ClaimSumAggregateInputType = {
     id?: true
     cost?: true
     userId?: true
+    policyId?: true
   }
 
   export type ClaimMinAggregateInputType = {
@@ -3557,6 +3625,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
+    policyId?: true
   }
 
   export type ClaimMaxAggregateInputType = {
@@ -3568,6 +3637,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
+    policyId?: true
   }
 
   export type ClaimCountAggregateInputType = {
@@ -3579,6 +3649,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
+    policyId?: true
     _all?: true
   }
 
@@ -3677,6 +3748,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     userId: number
+    policyId: number
     _count: ClaimCountAggregateOutputType | null
     _avg: ClaimAvgAggregateOutputType | null
     _sum: ClaimSumAggregateOutputType | null
@@ -3707,7 +3779,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    policyId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    policy?: boolean | PolicyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["claim"]>
 
   export type ClaimSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3719,7 +3793,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    policyId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    policy?: boolean | PolicyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["claim"]>
 
   export type ClaimSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3731,7 +3807,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    policyId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    policy?: boolean | PolicyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["claim"]>
 
   export type ClaimSelectScalar = {
@@ -3743,23 +3821,28 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    policyId?: boolean
   }
 
-  export type ClaimOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "dateOfService" | "cost" | "status" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["claim"]>
+  export type ClaimOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "dateOfService" | "cost" | "status" | "createdAt" | "updatedAt" | "userId" | "policyId", ExtArgs["result"]["claim"]>
   export type ClaimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    policy?: boolean | PolicyDefaultArgs<ExtArgs>
   }
   export type ClaimIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    policy?: boolean | PolicyDefaultArgs<ExtArgs>
   }
   export type ClaimIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    policy?: boolean | PolicyDefaultArgs<ExtArgs>
   }
 
   export type $ClaimPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Claim"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      policy: Prisma.$PolicyPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3770,6 +3853,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       userId: number
+      policyId: number
     }, ExtArgs["result"]["claim"]>
     composites: {}
   }
@@ -4165,6 +4249,7 @@ export namespace Prisma {
   export interface Prisma__ClaimClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    policy<T extends PolicyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PolicyDefaultArgs<ExtArgs>>): Prisma__PolicyClient<$Result.GetResult<Prisma.$PolicyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4202,6 +4287,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Claim", 'DateTime'>
     readonly updatedAt: FieldRef<"Claim", 'DateTime'>
     readonly userId: FieldRef<"Claim", 'Int'>
+    readonly policyId: FieldRef<"Claim", 'Int'>
   }
     
 
@@ -4669,7 +4755,8 @@ export namespace Prisma {
     status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    userId: 'userId'
+    userId: 'userId',
+    policyId: 'policyId'
   };
 
   export type ClaimScalarFieldEnum = (typeof ClaimScalarFieldEnum)[keyof typeof ClaimScalarFieldEnum]
@@ -4888,6 +4975,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Policy"> | Date | string
     userId?: IntFilter<"Policy"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    claims?: ClaimListRelationFilter
   }
 
   export type PolicyOrderByWithRelationInput = {
@@ -4903,6 +4991,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
+    claims?: ClaimOrderByRelationAggregateInput
   }
 
   export type PolicyWhereUniqueInput = Prisma.AtLeast<{
@@ -4921,6 +5010,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Policy"> | Date | string
     userId?: IntFilter<"Policy"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    claims?: ClaimListRelationFilter
   }, "id" | "policyNumber">
 
   export type PolicyOrderByWithAggregationInput = {
@@ -4971,7 +5061,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Claim"> | Date | string
     updatedAt?: DateTimeFilter<"Claim"> | Date | string
     userId?: IntFilter<"Claim"> | number
+    policyId?: IntFilter<"Claim"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    policy?: XOR<PolicyScalarRelationFilter, PolicyWhereInput>
   }
 
   export type ClaimOrderByWithRelationInput = {
@@ -4983,7 +5075,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    policyId?: SortOrder
     user?: UserOrderByWithRelationInput
+    policy?: PolicyOrderByWithRelationInput
   }
 
   export type ClaimWhereUniqueInput = Prisma.AtLeast<{
@@ -4998,7 +5092,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Claim"> | Date | string
     updatedAt?: DateTimeFilter<"Claim"> | Date | string
     userId?: IntFilter<"Claim"> | number
+    policyId?: IntFilter<"Claim"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    policy?: XOR<PolicyScalarRelationFilter, PolicyWhereInput>
   }, "id">
 
   export type ClaimOrderByWithAggregationInput = {
@@ -5010,6 +5106,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    policyId?: SortOrder
     _count?: ClaimCountOrderByAggregateInput
     _avg?: ClaimAvgOrderByAggregateInput
     _max?: ClaimMaxOrderByAggregateInput
@@ -5029,6 +5126,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Claim"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Claim"> | Date | string
     userId?: IntWithAggregatesFilter<"Claim"> | number
+    policyId?: IntWithAggregatesFilter<"Claim"> | number
   }
 
   export type UserCreateInput = {
@@ -5124,6 +5222,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPoliciesInput
+    claims?: ClaimCreateNestedManyWithoutPolicyInput
   }
 
   export type PolicyUncheckedCreateInput = {
@@ -5138,6 +5237,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    claims?: ClaimUncheckedCreateNestedManyWithoutPolicyInput
   }
 
   export type PolicyUpdateInput = {
@@ -5151,6 +5251,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPoliciesNestedInput
+    claims?: ClaimUpdateManyWithoutPolicyNestedInput
   }
 
   export type PolicyUncheckedUpdateInput = {
@@ -5165,6 +5266,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    claims?: ClaimUncheckedUpdateManyWithoutPolicyNestedInput
   }
 
   export type PolicyCreateManyInput = {
@@ -5215,6 +5317,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutClaimsInput
+    policy: PolicyCreateNestedOneWithoutClaimsInput
   }
 
   export type ClaimUncheckedCreateInput = {
@@ -5226,6 +5329,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    policyId: number
   }
 
   export type ClaimUpdateInput = {
@@ -5236,6 +5340,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutClaimsNestedInput
+    policy?: PolicyUpdateOneRequiredWithoutClaimsNestedInput
   }
 
   export type ClaimUncheckedUpdateInput = {
@@ -5247,6 +5352,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    policyId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ClaimCreateManyInput = {
@@ -5258,6 +5364,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    policyId: number
   }
 
   export type ClaimUpdateManyMutationInput = {
@@ -5278,6 +5385,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    policyId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -5540,6 +5648,11 @@ export namespace Prisma {
     not?: NestedEnumClaimStatusFilter<$PrismaModel> | $Enums.ClaimStatus
   }
 
+  export type PolicyScalarRelationFilter = {
+    is?: PolicyWhereInput
+    isNot?: PolicyWhereInput
+  }
+
   export type ClaimCountOrderByAggregateInput = {
     id?: SortOrder
     description?: SortOrder
@@ -5549,12 +5662,14 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    policyId?: SortOrder
   }
 
   export type ClaimAvgOrderByAggregateInput = {
     id?: SortOrder
     cost?: SortOrder
     userId?: SortOrder
+    policyId?: SortOrder
   }
 
   export type ClaimMaxOrderByAggregateInput = {
@@ -5566,6 +5681,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    policyId?: SortOrder
   }
 
   export type ClaimMinOrderByAggregateInput = {
@@ -5577,12 +5693,14 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    policyId?: SortOrder
   }
 
   export type ClaimSumOrderByAggregateInput = {
     id?: SortOrder
     cost?: SortOrder
     userId?: SortOrder
+    policyId?: SortOrder
   }
 
   export type EnumClaimStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -5705,6 +5823,20 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type ClaimCreateNestedManyWithoutPolicyInput = {
+    create?: XOR<ClaimCreateWithoutPolicyInput, ClaimUncheckedCreateWithoutPolicyInput> | ClaimCreateWithoutPolicyInput[] | ClaimUncheckedCreateWithoutPolicyInput[]
+    connectOrCreate?: ClaimCreateOrConnectWithoutPolicyInput | ClaimCreateOrConnectWithoutPolicyInput[]
+    createMany?: ClaimCreateManyPolicyInputEnvelope
+    connect?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+  }
+
+  export type ClaimUncheckedCreateNestedManyWithoutPolicyInput = {
+    create?: XOR<ClaimCreateWithoutPolicyInput, ClaimUncheckedCreateWithoutPolicyInput> | ClaimCreateWithoutPolicyInput[] | ClaimUncheckedCreateWithoutPolicyInput[]
+    connectOrCreate?: ClaimCreateOrConnectWithoutPolicyInput | ClaimCreateOrConnectWithoutPolicyInput[]
+    createMany?: ClaimCreateManyPolicyInputEnvelope
+    connect?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -5721,10 +5853,44 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPoliciesInput, UserUpdateWithoutPoliciesInput>, UserUncheckedUpdateWithoutPoliciesInput>
   }
 
+  export type ClaimUpdateManyWithoutPolicyNestedInput = {
+    create?: XOR<ClaimCreateWithoutPolicyInput, ClaimUncheckedCreateWithoutPolicyInput> | ClaimCreateWithoutPolicyInput[] | ClaimUncheckedCreateWithoutPolicyInput[]
+    connectOrCreate?: ClaimCreateOrConnectWithoutPolicyInput | ClaimCreateOrConnectWithoutPolicyInput[]
+    upsert?: ClaimUpsertWithWhereUniqueWithoutPolicyInput | ClaimUpsertWithWhereUniqueWithoutPolicyInput[]
+    createMany?: ClaimCreateManyPolicyInputEnvelope
+    set?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+    disconnect?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+    delete?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+    connect?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+    update?: ClaimUpdateWithWhereUniqueWithoutPolicyInput | ClaimUpdateWithWhereUniqueWithoutPolicyInput[]
+    updateMany?: ClaimUpdateManyWithWhereWithoutPolicyInput | ClaimUpdateManyWithWhereWithoutPolicyInput[]
+    deleteMany?: ClaimScalarWhereInput | ClaimScalarWhereInput[]
+  }
+
+  export type ClaimUncheckedUpdateManyWithoutPolicyNestedInput = {
+    create?: XOR<ClaimCreateWithoutPolicyInput, ClaimUncheckedCreateWithoutPolicyInput> | ClaimCreateWithoutPolicyInput[] | ClaimUncheckedCreateWithoutPolicyInput[]
+    connectOrCreate?: ClaimCreateOrConnectWithoutPolicyInput | ClaimCreateOrConnectWithoutPolicyInput[]
+    upsert?: ClaimUpsertWithWhereUniqueWithoutPolicyInput | ClaimUpsertWithWhereUniqueWithoutPolicyInput[]
+    createMany?: ClaimCreateManyPolicyInputEnvelope
+    set?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+    disconnect?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+    delete?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+    connect?: ClaimWhereUniqueInput | ClaimWhereUniqueInput[]
+    update?: ClaimUpdateWithWhereUniqueWithoutPolicyInput | ClaimUpdateWithWhereUniqueWithoutPolicyInput[]
+    updateMany?: ClaimUpdateManyWithWhereWithoutPolicyInput | ClaimUpdateManyWithWhereWithoutPolicyInput[]
+    deleteMany?: ClaimScalarWhereInput | ClaimScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutClaimsInput = {
     create?: XOR<UserCreateWithoutClaimsInput, UserUncheckedCreateWithoutClaimsInput>
     connectOrCreate?: UserCreateOrConnectWithoutClaimsInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type PolicyCreateNestedOneWithoutClaimsInput = {
+    create?: XOR<PolicyCreateWithoutClaimsInput, PolicyUncheckedCreateWithoutClaimsInput>
+    connectOrCreate?: PolicyCreateOrConnectWithoutClaimsInput
+    connect?: PolicyWhereUniqueInput
   }
 
   export type EnumClaimStatusFieldUpdateOperationsInput = {
@@ -5737,6 +5903,14 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutClaimsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutClaimsInput, UserUpdateWithoutClaimsInput>, UserUncheckedUpdateWithoutClaimsInput>
+  }
+
+  export type PolicyUpdateOneRequiredWithoutClaimsNestedInput = {
+    create?: XOR<PolicyCreateWithoutClaimsInput, PolicyUncheckedCreateWithoutClaimsInput>
+    connectOrCreate?: PolicyCreateOrConnectWithoutClaimsInput
+    upsert?: PolicyUpsertWithoutClaimsInput
+    connect?: PolicyWhereUniqueInput
+    update?: XOR<XOR<PolicyUpdateToOneWithWhereWithoutClaimsInput, PolicyUpdateWithoutClaimsInput>, PolicyUncheckedUpdateWithoutClaimsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -5904,6 +6078,7 @@ export namespace Prisma {
     endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    claims?: ClaimCreateNestedManyWithoutPolicyInput
   }
 
   export type PolicyUncheckedCreateWithoutUserInput = {
@@ -5917,6 +6092,7 @@ export namespace Prisma {
     endDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    claims?: ClaimUncheckedCreateNestedManyWithoutPolicyInput
   }
 
   export type PolicyCreateOrConnectWithoutUserInput = {
@@ -5936,6 +6112,7 @@ export namespace Prisma {
     status?: $Enums.ClaimStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    policy: PolicyCreateNestedOneWithoutClaimsInput
   }
 
   export type ClaimUncheckedCreateWithoutUserInput = {
@@ -5946,6 +6123,7 @@ export namespace Prisma {
     status?: $Enums.ClaimStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    policyId: number
   }
 
   export type ClaimCreateOrConnectWithoutUserInput = {
@@ -6019,6 +6197,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Claim"> | Date | string
     updatedAt?: DateTimeFilter<"Claim"> | Date | string
     userId?: IntFilter<"Claim"> | number
+    policyId?: IntFilter<"Claim"> | number
   }
 
   export type UserCreateWithoutPoliciesInput = {
@@ -6047,6 +6226,37 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutPoliciesInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutPoliciesInput, UserUncheckedCreateWithoutPoliciesInput>
+  }
+
+  export type ClaimCreateWithoutPolicyInput = {
+    description: string
+    dateOfService: Date | string
+    cost: Decimal | DecimalJsLike | number | string
+    status?: $Enums.ClaimStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutClaimsInput
+  }
+
+  export type ClaimUncheckedCreateWithoutPolicyInput = {
+    id?: number
+    description: string
+    dateOfService: Date | string
+    cost: Decimal | DecimalJsLike | number | string
+    status?: $Enums.ClaimStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+  }
+
+  export type ClaimCreateOrConnectWithoutPolicyInput = {
+    where: ClaimWhereUniqueInput
+    create: XOR<ClaimCreateWithoutPolicyInput, ClaimUncheckedCreateWithoutPolicyInput>
+  }
+
+  export type ClaimCreateManyPolicyInputEnvelope = {
+    data: ClaimCreateManyPolicyInput | ClaimCreateManyPolicyInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutPoliciesInput = {
@@ -6083,6 +6293,22 @@ export namespace Prisma {
     claims?: ClaimUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type ClaimUpsertWithWhereUniqueWithoutPolicyInput = {
+    where: ClaimWhereUniqueInput
+    update: XOR<ClaimUpdateWithoutPolicyInput, ClaimUncheckedUpdateWithoutPolicyInput>
+    create: XOR<ClaimCreateWithoutPolicyInput, ClaimUncheckedCreateWithoutPolicyInput>
+  }
+
+  export type ClaimUpdateWithWhereUniqueWithoutPolicyInput = {
+    where: ClaimWhereUniqueInput
+    data: XOR<ClaimUpdateWithoutPolicyInput, ClaimUncheckedUpdateWithoutPolicyInput>
+  }
+
+  export type ClaimUpdateManyWithWhereWithoutPolicyInput = {
+    where: ClaimScalarWhereInput
+    data: XOR<ClaimUpdateManyMutationInput, ClaimUncheckedUpdateManyWithoutPolicyInput>
+  }
+
   export type UserCreateWithoutClaimsInput = {
     email: string
     password: string
@@ -6109,6 +6335,38 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutClaimsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutClaimsInput, UserUncheckedCreateWithoutClaimsInput>
+  }
+
+  export type PolicyCreateWithoutClaimsInput = {
+    policyNumber: string
+    coverageDetails: string
+    annualDeductible: Decimal | DecimalJsLike | number | string
+    deductibleRemaining: Decimal | DecimalJsLike | number | string
+    outOfPocketMax: Decimal | DecimalJsLike | number | string
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutPoliciesInput
+  }
+
+  export type PolicyUncheckedCreateWithoutClaimsInput = {
+    id?: number
+    policyNumber: string
+    coverageDetails: string
+    annualDeductible: Decimal | DecimalJsLike | number | string
+    deductibleRemaining: Decimal | DecimalJsLike | number | string
+    outOfPocketMax: Decimal | DecimalJsLike | number | string
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+  }
+
+  export type PolicyCreateOrConnectWithoutClaimsInput = {
+    where: PolicyWhereUniqueInput
+    create: XOR<PolicyCreateWithoutClaimsInput, PolicyUncheckedCreateWithoutClaimsInput>
   }
 
   export type UserUpsertWithoutClaimsInput = {
@@ -6145,6 +6403,44 @@ export namespace Prisma {
     policies?: PolicyUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type PolicyUpsertWithoutClaimsInput = {
+    update: XOR<PolicyUpdateWithoutClaimsInput, PolicyUncheckedUpdateWithoutClaimsInput>
+    create: XOR<PolicyCreateWithoutClaimsInput, PolicyUncheckedCreateWithoutClaimsInput>
+    where?: PolicyWhereInput
+  }
+
+  export type PolicyUpdateToOneWithWhereWithoutClaimsInput = {
+    where?: PolicyWhereInput
+    data: XOR<PolicyUpdateWithoutClaimsInput, PolicyUncheckedUpdateWithoutClaimsInput>
+  }
+
+  export type PolicyUpdateWithoutClaimsInput = {
+    policyNumber?: StringFieldUpdateOperationsInput | string
+    coverageDetails?: StringFieldUpdateOperationsInput | string
+    annualDeductible?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    deductibleRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    outOfPocketMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutPoliciesNestedInput
+  }
+
+  export type PolicyUncheckedUpdateWithoutClaimsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    policyNumber?: StringFieldUpdateOperationsInput | string
+    coverageDetails?: StringFieldUpdateOperationsInput | string
+    annualDeductible?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    deductibleRemaining?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    outOfPocketMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type PolicyCreateManyUserInput = {
     id?: number
     policyNumber: string
@@ -6166,6 +6462,7 @@ export namespace Prisma {
     status?: $Enums.ClaimStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    policyId: number
   }
 
   export type PolicyUpdateWithoutUserInput = {
@@ -6178,6 +6475,7 @@ export namespace Prisma {
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    claims?: ClaimUpdateManyWithoutPolicyNestedInput
   }
 
   export type PolicyUncheckedUpdateWithoutUserInput = {
@@ -6191,6 +6489,7 @@ export namespace Prisma {
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    claims?: ClaimUncheckedUpdateManyWithoutPolicyNestedInput
   }
 
   export type PolicyUncheckedUpdateManyWithoutUserInput = {
@@ -6213,6 +6512,7 @@ export namespace Prisma {
     status?: EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    policy?: PolicyUpdateOneRequiredWithoutClaimsNestedInput
   }
 
   export type ClaimUncheckedUpdateWithoutUserInput = {
@@ -6223,6 +6523,7 @@ export namespace Prisma {
     status?: EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    policyId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ClaimUncheckedUpdateManyWithoutUserInput = {
@@ -6233,6 +6534,50 @@ export namespace Prisma {
     status?: EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    policyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ClaimCreateManyPolicyInput = {
+    id?: number
+    description: string
+    dateOfService: Date | string
+    cost: Decimal | DecimalJsLike | number | string
+    status?: $Enums.ClaimStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+  }
+
+  export type ClaimUpdateWithoutPolicyInput = {
+    description?: StringFieldUpdateOperationsInput | string
+    dateOfService?: DateTimeFieldUpdateOperationsInput | Date | string
+    cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutClaimsNestedInput
+  }
+
+  export type ClaimUncheckedUpdateWithoutPolicyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    dateOfService?: DateTimeFieldUpdateOperationsInput | Date | string
+    cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ClaimUncheckedUpdateManyWithoutPolicyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    dateOfService?: DateTimeFieldUpdateOperationsInput | Date | string
+    cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: EnumClaimStatusFieldUpdateOperationsInput | $Enums.ClaimStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
   }
 
 

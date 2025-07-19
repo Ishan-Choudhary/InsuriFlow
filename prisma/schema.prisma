@@ -30,7 +30,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   policies Policy[]
-  claims    Claim[]
+  claims   Claim[]
 }
 
 model Policy {
@@ -47,6 +47,8 @@ model Policy {
 
   user   User @relation(fields: [userId], references: [id])
   userId Int
+
+  claims Claim[]
 }
 
 enum ClaimStatus {
@@ -66,4 +68,7 @@ model Claim {
 
   user   User @relation(fields: [userId], references: [id])
   userId Int
+
+  policy   Policy @relation(fields: [policyId], references: [id])
+  policyId Int
 }
